@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Калькулятор накоплений по депозиту</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Калькулятор депозита</h1>
+    <label for="principal">Начальная сумма:</label>
+    <input type="number" id="principal" placeholder="Введите начальную сумму депозита">
+
+    <label for="interest">Годовая процентная ставка (%):</label>
+    <input type="number" id="interest" placeholder="Введите годовую процентную ставку">
+
+    <label for="months">Срок вклада (в месяцах):</label>
+    <input type="number" id="months" placeholder="Введите срок вклада в месяцах">
+
+    <button onclick="calculate()">Рассчитать</button>
+
+    <div id="result"></div>
+
+    <script>
+        function calculate() {
+            var principal = parseFloat(document.getElementById('principal').value);
+            var interest = parseFloat(document.getElementById('interest').value);
+            var months = parseInt(document.getElementById('months').value);
+
+            var monthlyInterest = (principal*(interest/100)*30)/360
+
+
+
+            var table = "<table><tr><th>Месяц</th><th>Начальная сумма</th><th>Проценты</th><th>Итоговая сумма</th></tr>";
+            var total = principal;
+            for (var i = 1; i <= months; i++) {
+                var interestEarned = monthlyInterest
+                total += interestEarned;
+                table += "<tr><td>" + i + "</td><td>" + principal.toFixed(2) + "</td><td>" + interestEarned.toFixed(2) + "</td><td>" + total.toFixed(2) + "</td></tr>";
+
+            }
+            table += "</table>";
+
+            document.getElementById('result').innerHTML = table;
+        }
+    </script>
+</body>
+</html>

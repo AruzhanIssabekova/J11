@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Калькулятор накоплений по депозиту</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Калькулятор депозита</h1>
+    <label for="first">Начальная сумма:</label>
+    <input type="number" id="first" placeholder="Введите начальную сумму депозита">
+
+    <label for="pr">Годовая процентная ставка (%):</label>
+    <input type="number" id="pr" placeholder="Введите годовую процентную ставку">
+
+    <label for="months">Срок вклада (в месяцах):</label>
+    <input type="number" id="months" placeholder="Введите срок вклада в месяцах">
+
+    <button onclick="calculate()">Рассчитать</button>
+
+    <div id="result"></div>
+
+    <script>
+        function calculate() {
+            var first = parseFloat(document.getElementById('first').value);
+            var pr = parseFloat(document.getElementById('pr').value);
+            var months = parseInt(document.getElementById('months').value);
+            var m = ((first*pr)/100)/12
+            var total = first+m*months;
+            document.getElementById('result').innerHTML = total.toFixed(2) + " тенге.";
+        }
+    </script>
+</body>
+</html>
